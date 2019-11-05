@@ -1,0 +1,1 @@
+# oracle-resource-manager-handson
