@@ -1,4 +1,4 @@
-# Oracle Resource Manager on OCI Hands-On
+# Oracle Resource Manager on OCI Hands-On (Oracle Modern Cloud Day 2019의 Tech Hands-on Track)
 
 ![](images/header.png)
  
@@ -11,6 +11,15 @@
 * Oracle REsource Manager Stack 생성 코드 작성
 * Oracle Resource Manager Job 실행
 
+## Required Artifacts
+* 인터넷 접속 가능한 랩탑
+* OCI (Oracle Cloud Infrastructure) 계정
+* SSH Terminal (windows Putty, macOS Terminal 등)
+
+## Client 접속 환경
+ssh -i mcd_id_rsa opc@140.238.2.225
+실습 환경 접속 정보 받기
+
 ## 샘플 애플리케이션
 샘플 애플리케이션은 MuShop 이라는 이름을 가진 이커머스 웹 사이트(고양이 관련 용품 판매)로 3-tier로 구성된 웹 애플리케이션입니다.
 해당 애플리케이션에는 애플리케이션 구동에 필요한 모든 리소스와 설정을 담고 있는 Terraform 코드를 포함하고 있습니다.
@@ -20,45 +29,87 @@
 | ![home](./images/mushop.home.png) | ![browse](./images/mushop.browse.png) | ![cart](./images/mushop.cart.png) | ![about](./images/mushop.about.png) |
 |---|---|---|---|
 
-## Required Artifacts
-* 인터넷 접속 가능한 랩탑
-* OCI (Oracle Cloud Infrastructure) 계정
-* SSH Terminal (windows Putty, macOS Terminal 등)
+## Terraform과 Oracle Resource Manager
+### Terraform
+Terraform은 Hashicorp에서 개발한 인프라스트럭처 관리를 위한 오픈소스 소프트웨어로, 인프라스트럭처를 코드로서 관리 및 프로비저닝하는 개념인 Ifrastructure as Code (IaC)를 지향하는 도구라고 볼 수 있습니다. Terraform에서는 HCL(Hachicorp Configuration Language)라는 설정 언어를 이용해서 인프라스트럭처를 정의합니다.
 
-## Client 접속 환경
-ssh -i mcd_id_rsa opc@132.145.80.104
+### Resource Manager
+Oracle Resource Manager는 Oracle Cloud Infrastructure(이하 OCI)의 리소스 프로비저닝을 자동화 하는 기능으로, Terraform Configuration 사용해서 실행하는 기능입니다. Resource Manager를 사용하면 별도 클라이언트 환경에 Terraform 설치나 환경 구성이 필요 없으며, OCI Console을 통해 Terraform Configuration을 관리, Apply, Plan, Destroy를 할 수 있습니다. 이외에도 Terraform Configuration 실행 로그 관리, IAM(Identity and Access Management)를 통한 사용자 통제, Terraform 변수 및 상태 (State: Terraform Configuration을 Apply할 때 Apply한 결과를 가지는 파일로 인프라 변경내용을 추적할 수 있음) 관리
+등의 기능을 제공합니다.
+
+Stack
+스택은 Terraform Configuration 묶음을 등록하여 생성하는 Provisioning 단위입니다.
+
+Job
+Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Terraform에서 경험한 것 처럼 Terraform Plan, Apply, Destroy이 실행되는 작업입니다.
+
+## 실습을 위한 클라이언트 환경
+다음 주소를 클릭합니다. 본인의 이메일 주소를 입력하면 실습을 위한 클라이언트 환경을 할당받을 수 있습니다.
+--- 여기서 이메일 입력, 제출 클릭하면 Private/Public Key (Putty, OpenSSH), IP, 접속 계정을 전달 받는다.
+
+
+
+
 
 ## Hands-On Steps
 
-* **STEP 1**: Setup  
-* **STEP 2**: OCI에서 Kubernetes Cluster 생성하기  
-* **STEP 3**: kubectl과 oci-cli 설치하기  
-* **STEP 4**: GitHub Repository 생성하기  
-* **STEP 5**: Wercker 환경 구성하기  
-* **STEP 6**: Wercker CI/CD Pipeline 구성하기  
-* **STEP 7**: Wercker 파이프라인 실행하기  
-* **STEP 8**: Oracle Container Registry (OCIR) 확인 및 Oracle Kubernetes Engine (OKE) 에 생성(배포)된 Pod와 Service 확인하기  
-* **STEP 9**: Oracle Kubernetes Engine (OKE) 에 생성(배포)된 Pod와 Service 확인하기  
-* **STEP 10**: 서비스 확인하기
-
 ***
 
-## **STEP 1**: Setup
-* GitHub 계정 생성
-* Wercker 계정 생성
+## **STEP 1**: Resource Manager 환경 구성
 
-### GitHub 계정 생성
-* https://github.com 에 접속해서 우측 상단 **Sign up**을 클릭합니다.
-![](images/github_signup.png)
+### Compartment 만들기
+<font color='red'>이미 만들어진 Compartment가 있을 경우 이 단계는 건너뜁니다.</font>
+> ***Compartment***   
+> 모든 OCI 리소스는 특정 Compartment에 속하게 되며 Compartment 단위로 사용자들의 접근 정책을 관리할 수 있습니다. 처음에는 Root Compartment가 만들어지며, Root Compartment 하위에 추가 Compartment를 생성할 수 있습니다. OCI 클라우드 리소스를 쉽게 관리하기 위한 일종의 폴더 개념이라고 생각하면 됩니다. 부서나 프로젝트등을 고려해서 Compartment를 구성하여 해당 Compartment별로 세부적인 권한을 부여할 수 있습니다.
 
-* 다음 내용을 입력하고 **Create an account** 클릭해서 계정 생성합니다. 검증 메일이 발송되기 때문에 정확한 이메일을 입력해야 합니다. GitHub으로 부터 수신받은 이메일에서 **Verify email address**를 클릭해서 계정 생성을 완료합니다.
+먼저 OCI Console에 로그인합니다.
 
-    ![](images/github_create_account.png)
+1. https://console.us-ashburn-1.oraclecloud.com 접속 후 Tenant 입력 > **Continue** 클릭
+![](images/oci_login_tenant.png)
 
-    ![](images/github_verify_email.png)
+2. Identity Provider를 oracleidentitycloudservice 선택(Default) > **Continue** 클릭
+![](images/oci_login_sso.png)
 
-* 생성한 계정으로 **Sign in** 합니다.
+3. 사용자 이름(User Name)과 암호(Password) 입력 후 **Sign In** 클릭
+![](images/oci_login_user_pw.png)
 
-    ![](images/github_signin.png)
+4. OCI Main 페이지, **I accept all cookies** 클릭하여 쿠키 수락
+![](images/oci_main_cookie.png)
 
-    ![](images/github_login.png)
+5.  좌측 상단의 햄버거 모양의 아이콘 클릭 > Identity 선택 > Compartments 선택
+![](images/oci_main_menu_identity_compartments.png)
+
+### Git Repository에서 소스 다운로드 받기
+Resource Manager를 활용하여 OCI에 리소스 생성 및 배포를 위한 소스를 제공된 Git Repository에서 다운로드 받는 과정입니다.
+
+1. 먼저 작업을 위한 클라이언트에 접속합니다. 터미널 혹은 Putty를 오픈한 후 다음과 같이 접속합니다.
+    ```
+    $ ssh -i mcd_id_rsa opc@140.238.2.225
+    ```
+
+2. 접속 후 할당된 유저로 전환합니다.
+    ```
+    $ sudo su - user1
+    ```
+
+3. Resource Manager에서 사용할 Terraform Configuration과 웹 애플리케이션 소스를 포함하는 소스를 Github Repository에서 다운로드 받습니다.
+    ```
+    $ git clone https://github.com/oracle/oci-quickstart-cloudnative
+    ```
+
+## **STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성하기
+
+### Docker 이미지 만들기
+다운로드 받은 소스에는 웹 애플리케이션 소스와 Terraform Configuration, Docker Image를 생성하기 위한 Docker 파일을 포함합니다. 포함된 Dockerfile을 이용해서 Image를 생성합니다.
+
+1. 다음 명령어로 Dockerfile을 이용하여 Image Build.
+    ```
+    $ cd oci-quickstart-cloudnative
+
+    $ docker build -t mushop-basic -f deploy/basic/Dockerfile .
+    ```
+
+2. OCI Resource Manager Stack Zip 패키지 생성
+    ```
+    $ docker run -v "$((pwd).path -replace '\\', '/'):/transfer" --rm --entrypoint cp mushop-basic:latest /package/mushop-basic-stack.zip /transfer/mushop-basic-stack.zip
+    ```
