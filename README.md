@@ -17,7 +17,7 @@
 * SSH Terminal (windows Putty, macOS Terminal 등)
 
 ## Client 접속 환경
-ssh -i mcd_id_rsa opc@140.238.2.225
+ssh -i id_rsa opc@132.145.83.122
 실습 환경 접속 정보 받기
 
 ## 샘플 애플리케이션
@@ -46,9 +46,6 @@ Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Te
 ## 실습을 위한 클라이언트 환경
 다음 주소를 클릭합니다. 본인의 이메일 주소를 입력하면 실습을 위한 클라이언트 환경을 할당받을 수 있습니다.
 --- 여기서 이메일 입력, 제출 클릭하면 Private/Public Key (Putty, OpenSSH), IP, 접속 계정을 전달 받는다.
-
-
-
 
 
 ## Hands-On Steps
@@ -94,7 +91,7 @@ Resource Manager를 활용하여 OCI에 리소스 생성 및 배포를 위한 �
 
 3. Resource Manager에서 사용할 Terraform Configuration과 웹 애플리케이션 소스를 포함하는 소스를 Github Repository에서 다운로드 받습니다.
     ```
-    $ git clone https://github.com/oracle/oci-quickstart-cloudnative
+    $ git clone https://github.com/MangDan/oracle-resource-manager-handson
     ```
 
 ## **STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성하기
@@ -104,12 +101,91 @@ Resource Manager를 활용하여 OCI에 리소스 생성 및 배포를 위한 �
 
 1. 다음 명령어로 Dockerfile을 이용하여 Image Build.
     ```
-    $ cd oci-quickstart-cloudnative
+    $ cd oracle-resource-manager-handson/oci-quickstart-cloudnative
 
     $ docker build -t mushop-basic -f deploy/basic/Dockerfile .
     ```
 
 2. OCI Resource Manager Stack Zip 패키지 생성
     ```
-    $ docker run -v "$((pwd).path -replace '\\', '/'):/transfer" --rm --entrypoint cp mushop-basic:latest /package/mushop-basic-stack.zip /transfer/mushop-basic-stack.zip
+    $ docker run -v $PWD:/transfer --rm --entrypoint cp mushop-basic:latest /package/mushop-basic-stack.zip /transfer/mushop-basic-stack.zip
     ```
+
+3. 브라우저에 아래 URL입력 후 생성된 Zip 패키지 다운로드
+    {os_user명}에 할당받은 os user를 입력 (e.g. user101)
+    ```
+    http://132.145.83.122/admin/oracle-resource-manager-handson/oci-quickstart-cloudnative/mushop-basic-stack.zip
+    ```
+
+## **STEP 3**: Resource Manager Stack 생성하기
+Terraform Configuration과 웹 애플리케이션 소스를 포함하고 있는 Zip 파일을 OCI Resource Manager Stack으로 등록하는 과정입니다.
+
+1. OCI Console에 로그인한 후 좌측 상단의 햄버거 버튼 클릭 > Resource Manager 클릭 > Stacks 클릭
+![](images/oci_main_menu_rm_stacks.png)
+
+2. 앞에서 생성한 Compartment 선택 후 **Create Stack** 클릭
+![](images/oci_rm_create_stack.png)
+
+3. 다운로드 받은 Zip 패키지를 선택, Name 입력(자동 생성), Compartment 선택, Terraform Version 선택 (본 실습에서는 0.11.x 버전으로 진행) 후 **Next** 클릭
+![](images/oci_rm_create_stack_2.png)
+
+4. Database Name (기본 선택), Node Count (2), Available Domain 선택 후 **Next** 클릭
+ ![](images/oci_rm_create_stack_3.png)
+
+5. Stack Review 후 **Create** 버튼 클릭하여 생성
+ ![](images/oci_rm_create_stack_4.png)
+
+6. Stack 생성 완료
+ ![](images/oci_rm_create_stack_complete.png)
+
+## **STEP 4**: Resource Manager Apply Job 실행하기
+1. Terraform Configuration 적용을 위해서 Terraform Actions > Apply를 클릭합니다.
+ ![](images/oci_rm_apply_job.png)
+
+2. 실행할 Job Name (자동 생성) 확인 후 **Apply**를 클릭합니다.
+ ![](images/oci_rm_apply_job_2.png)
+
+3. Terraform Configuration을 적용하는 Job 실행 과정을 로그로 보여줍니다.
+ ![](images/oci_rm_apply_logs.png)
+
+4. Job 실행 완료, 하단에 Load Balancer의 External IP를 확인할 수 있습니다. (http://129.213.211.152/)
+ ![](images/oci_rm_apply_job_complete.png)
+
+## **STEP 5**: 생성된 OCI Resource와 웹 애프리케이션 배포 확인
+1. Compute Instance 확인 (메뉴 > Compute > Instances)
+ ![](images/oci_rm_compute.png)
+
+2. VCN 확인 (메뉴 > Networking > Virtual Cloud Networks)
+ ![](images/oci_rm_vcn.png)
+
+3. Load Balancer 확인 (메뉴 > Networking > Load Balancers)
+ ![](images/oci_rm_load_balancer.png)
+
+
+4. ATP 확인 (메뉴 > Autonomous Transaction Processing)
+ ![](images/oci_rm_atp.png)
+
+
+5. Object Storage 확인 (메뉴 > Object Storage)
+ ![](images/oci_rm_object_storage.png)
+
+
+6. Policy 확인 (메뉴 > Identity > Policies, Compartment를 root로 선택)
+ ![](images/oci_rm_policy.png)
+
+
+7. 접속 확인 (http://129.213.211.152/)
+ ![](images/oci_rm_mushop.png)
+
+## **STEP 6**: 생성된 모든 리소스 삭제하기
+1. Resource Manager Stack에서 Destroy를 통해 Stack으로 생성된 모든 리소스 삭제
+ ![](images/oci_rm_destroy.png)
+
+2. Job 이름 입력 (자동 생성)
+ ![](images/oci_rm_destroy_2.png)
+
+3. Destroy 진행중
+ ![](images/oci_rm_destroy_job_ing.png)
+
+4. Destroy 완료
+ ![](images/oci_rm_destroy_job_complete.png)
