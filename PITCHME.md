@@ -1,4 +1,4 @@
-## Oracle Resource Manager on OCI Hands-On
+## Oracle Resource Manager and Terraform
 
 ---
 

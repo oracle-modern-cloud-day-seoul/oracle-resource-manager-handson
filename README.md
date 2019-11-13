@@ -23,6 +23,9 @@ ssh -i id_rsa opc@140.238.18.26
 실습 환경 접속 정보 받기
 
 ## Terraform과 Oracle Resource Manager (장표 설명: 10분 ~ 15분)
+Presentation은 Gitpitch를 사용할 예정임.
+[![](images/gitpitch-orm-intro.png)](https://gitpitch.com/mangdan/oracle-resource-manager-handson#/)
+
 ### Terraform
 Terraform은 Hashicorp에서 개발한 인프라스트럭처 관리를 위한 오픈소스 소프트웨어로, 인프라스트럭처를 코드로서 관리 및 프로비저닝하는 개념인 Ifrastructure as Code (IaC)를 지향하는 도구라고 볼 수 있습니다. Terraform에서는 HCL(Hachicorp Configuration Language)라는 설정 언어를 이용해서 인프라스트럭처를 정의합니다.
 
