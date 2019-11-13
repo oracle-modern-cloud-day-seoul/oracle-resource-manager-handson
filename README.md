@@ -17,10 +17,12 @@
 * SSH Terminal (windows Putty, macOS Terminal 등)
 
 ## Client 접속 환경
-ssh -i id_rsa opc@132.145.83.122
+```
+ssh -i id_rsa opc@140.238.18.26
+```
 실습 환경 접속 정보 받기
 
-## Terraform과 Oracle Resource Manager
+## Terraform과 Oracle Resource Manager (장표 설명: 10분 ~ 15분)
 ### Terraform
 Terraform은 Hashicorp에서 개발한 인프라스트럭처 관리를 위한 오픈소스 소프트웨어로, 인프라스트럭처를 코드로서 관리 및 프로비저닝하는 개념인 Ifrastructure as Code (IaC)를 지향하는 도구라고 볼 수 있습니다. Terraform에서는 HCL(Hachicorp Configuration Language)라는 설정 언어를 이용해서 인프라스트럭처를 정의합니다.
 
@@ -53,7 +55,14 @@ Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Te
 ## Components
 .....
 
-## Hands-On Steps
+## Hands-On Steps (30분)
+**STEP 1**: Resource Manager 환경 구성
+**STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성
+**STEP 3**: Resource Manager Stack 생성
+**STEP 4**: Resource Manager Apply Job 실행
+**STEP 5**: 생성된 OCI Resource와 웹 애프리케이션 배포 확인
+**STEP 6**: 생성된 모든 리소스 삭제
+**STEP 7**: 삭제 리소스 확인
 
 ***
 
@@ -99,7 +108,7 @@ Resource Manager를 활용하여 OCI에 리소스 생성 및 배포를 위한 �
     $ git clone https://github.com/MangDan/oracle-resource-manager-handson
     ```
 
-## **STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성하기
+## **STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성
 
 ### Docker 이미지 만들기
 다운로드 받은 소스에는 웹 애플리케이션 소스와 Terraform Configuration, Docker Image를 생성하기 위한 Docker 파일을 포함합니다. 포함된 Dockerfile을 이용해서 Image를 생성합니다.
@@ -122,7 +131,7 @@ Resource Manager를 활용하여 OCI에 리소스 생성 및 배포를 위한 �
     http://132.145.83.122/admin/oracle-resource-manager-handson/oci-quickstart-cloudnative/mushop-basic-stack.zip
     ```
 
-## **STEP 3**: Resource Manager Stack 생성하기
+## **STEP 3**: Resource Manager Stack 생성
 Terraform Configuration과 웹 애플리케이션 소스를 포함하고 있는 Zip 파일을 OCI Resource Manager Stack으로 등록하는 과정입니다.
 
 1. OCI Console에 로그인한 후 좌측 상단의 햄버거 버튼 클릭 > Resource Manager 클릭 > Stacks 클릭
@@ -143,7 +152,7 @@ Terraform Configuration과 웹 애플리케이션 소스를 포함하고 있는 
 6. Stack 생성 완료
  ![](images/oci_rm_create_stack_complete.png)
 
-## **STEP 4**: Resource Manager Apply Job 실행하기
+## **STEP 4**: Resource Manager Apply Job 실행
 1. Terraform Configuration 적용을 위해서 Terraform Actions > Apply를 클릭합니다.
  ![](images/oci_rm_apply_job.png)
 
@@ -182,7 +191,7 @@ Terraform Configuration과 웹 애플리케이션 소스를 포함하고 있는 
 7. 접속 확인 (http://129.213.211.152/)
  ![](images/oci_rm_mushop.png)
 
-## **STEP 6**: 생성된 모든 리소스 삭제하기
+## **STEP 6**: 생성된 모든 리소스 삭제
 1. Resource Manager Stack에서 Destroy를 통해 Stack으로 생성된 모든 리소스 삭제
  ![](images/oci_rm_destroy.png)
 
