@@ -1,4 +1,4 @@
-# Let's Get Started
+# Oracle Modern Cloud Day - Oracle Resource Manager on OCI Hands-On (Oracle Modern Cloud Day 2019의 Tech Hands-on Track)
 
 ---
 
