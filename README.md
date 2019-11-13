@@ -20,15 +20,6 @@
 ssh -i id_rsa opc@132.145.83.122
 실습 환경 접속 정보 받기
 
-## 샘플 애플리케이션
-샘플 애플리케이션은 MuShop 이라는 이름을 가진 이커머스 웹 사이트(고양이 관련 용품 판매)로 3-tier로 구성된 웹 애플리케이션입니다.
-해당 애플리케이션에는 애플리케이션 구동에 필요한 모든 리소스와 설정을 담고 있는 Terraform 코드를 포함하고 있습니다.
-
-![](images/mushop_logo.png)
-
-| ![home](./images/mushop.home.png) | ![browse](./images/mushop.browse.png) | ![cart](./images/mushop.cart.png) | ![about](./images/mushop.about.png) |
-|---|---|---|---|
-
 ## Terraform과 Oracle Resource Manager
 ### Terraform
 Terraform은 Hashicorp에서 개발한 인프라스트럭처 관리를 위한 오픈소스 소프트웨어로, 인프라스트럭처를 코드로서 관리 및 프로비저닝하는 개념인 Ifrastructure as Code (IaC)를 지향하는 도구라고 볼 수 있습니다. Terraform에서는 HCL(Hachicorp Configuration Language)라는 설정 언어를 이용해서 인프라스트럭처를 정의합니다.
@@ -47,6 +38,20 @@ Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Te
 다음 주소를 클릭합니다. 본인의 이메일 주소를 입력하면 실습을 위한 클라이언트 환경을 할당받을 수 있습니다.
 --- 여기서 이메일 입력, 제출 클릭하면 Private/Public Key (Putty, OpenSSH), IP, 접속 계정을 전달 받는다.
 
+## 샘플 애플리케이션
+샘플 애플리케이션은 MuShop 이라는 이름을 가진 이커머스 웹 사이트(고양이 관련 용품 판매)로 3-tier로 구성된 웹 애플리케이션입니다.
+해당 애플리케이션에는 애플리케이션 구동에 필요한 모든 리소스와 설정을 담고 있는 Terraform 코드를 포함하고 있습니다.
+
+![](images/mushop_logo.png)
+
+| ![home](./images/mushop.home.png) | ![browse](./images/mushop.browse.png) | ![cart](./images/mushop.cart.png) | ![about](./images/mushop.about.png) |
+|---|---|---|---|
+
+## Topology
+![](images/00-Topology.png)
+
+## Components
+.....
 
 ## Hands-On Steps
 
@@ -189,3 +194,6 @@ Terraform Configuration과 웹 애플리케이션 소스를 포함하고 있는 
 
 4. Destroy 완료
  ![](images/oci_rm_destroy_job_complete.png)
+
+## **STEP 7**: 삭제 리소스 확인
+STEP5에서와 동일하게 모든 OCI 리소스 확인
