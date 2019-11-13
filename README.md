@@ -60,13 +60,13 @@ Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Te
 .....
 
 ## Hands-On Steps (30분)
-**STEP 1**: Resource Manager 환경 구성
-**STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성
-**STEP 3**: Resource Manager Stack 생성
-**STEP 4**: Resource Manager Apply Job 실행
-**STEP 5**: 생성된 OCI Resource와 웹 애프리케이션 배포 확인
-**STEP 6**: 생성된 모든 리소스 삭제
-**STEP 7**: 삭제 리소스 확인
+**STEP 1**: Resource Manager 환경 구성  
+**STEP 2**: OCI Resource Manager를 위한 Stack Zip Package 생성  
+**STEP 3**: Resource Manager Stack 생성  
+**STEP 4**: Resource Manager Apply Job 실행  
+**STEP 5**: 생성된 OCI Resource와 웹 애프리케이션 배포 확인  
+**STEP 6**: 생성된 모든 리소스 삭제  
+**STEP 7**: 삭제 리소스 확인  
 
 ***
 
