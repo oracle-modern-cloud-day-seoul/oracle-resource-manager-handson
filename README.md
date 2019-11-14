@@ -91,7 +91,7 @@ Job은 스택으로 등록된 Terraform Configuration의 실행 작업이며, Te
 4. OCI Main 페이지, **I accept all cookies** 클릭하여 쿠키 수락
 ![](images/oci_main_cookie.png)
 
-5.  좌측 상단의 햄버거 모양의 아이콘 클릭 > Identity 선택 > Compartments 선택
+5.  좌측 상단의 햄버거 모양의 메뉴 아이콘 클릭 > Identity 선택 > Compartments 선택
 ![](images/oci_main_menu_identity_compartments.png)
 
 ### Git Repository에서 소스 다운로드 받기
