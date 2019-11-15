@@ -22,6 +22,8 @@ Oracle Modern Cloud Day 2019의 Developer Hands-on Track
 다음 주소를 클릭합니다. 본인의 이메일 주소를 입력하면 실습을 위한 클라이언트 환경을 할당받을 수 있습니다.
 --- 여기서 이메일 입력, 제출 클릭하면 Private/Public Key (Putty, OpenSSH), IP, 접속 계정을 전달 받는다.
 
+[SSH Key 다운로드](https://github.com/MangDan/oracle-resource-manager-handson/releases/download/1.0/key.zip)
+
 ```
 ssh -i id_rsa opc@140.238.18.26
 ```
@@ -51,7 +53,7 @@ Presentation은 Gitpitch를 사용할 예정임.
 ***
 
 ## **STEP 1**: Oracle Resource Manager에서 사용할 Zip 패키지 다운로드
-Resource Manager에서 사용할 Terraform Configuration과 웹 애플리케이션 소스를 포함하는 Zip 패키지 파일 [mushop-basic-stack-v1.0.2.zip](https://github.com/MangDan/oracle-resource-manager-handson/releases/download/1.0/mushop-basic-stack.zip)을 다운로드 받습니다.
+Resource Manager에서 사용할 Terraform Configuration과 웹 애플리케이션 소스를 포함하는 Zip 패키지 파일 [mushop-basic-stack.zip](https://github.com/MangDan/oracle-resource-manager-handson/releases/download/1.0/mushop-basic-stack.zip)을 다운로드 받습니다.
 
 <details>
 <summary>
