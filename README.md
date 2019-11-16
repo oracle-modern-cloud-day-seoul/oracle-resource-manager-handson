@@ -93,7 +93,7 @@ Resource Manager에서 사용할 Terraform Configuration을 포함하는 Zip 패
 > 본 실습에서는 Oracle Cloud에 Object Storage를 생성합니다. 생성된 Object Storage에 업로드할 실습용 샘플 파일입니다.
 
 ### **STEP 3**: OCI Console 로그인
-> https://console.ap-seoul-1.oraclecloud.com 접속 > Tenant 입력 > **Continue** 클릭 > oracleidentitycloudservice 선택(Default) > **Continue** 클릭 > 사용자 이름(User Name)과 암호(Password) 입력 > **Sign In** 클릭
+> https://console.ap-seoul-1.oraclecloud.com 접속 > Tenant 입력 > **Continue** 클릭 > Oracle Cloud Infrastructure 아래 사용자 이름(User Name)과 암호(Password) 입력 > **Sign In** 클릭
 
 ![](images/animated_gif/oci_console_login.gif)
 
@@ -239,7 +239,7 @@ Resource Manager에서 사용할 Terraform Configuration과 웹 애플리케이�
 </details>
 
 ### **STEP 2**: OCI Console 로그인
-> https://console.ap-seoul-1.oraclecloud.com 접속 > Tenant 입력 > **Continue** 클릭 > oracleidentitycloudservice 선택(Default) > **Continue** 클릭 > 사용자 이름(User Name)과 암호(Password) 입력 > **Sign In** 클릭
+> https://console.ap-seoul-1.oraclecloud.com 접속 > Tenant 입력 > **Continue** 클릭 > Oracle Cloud Infrastructure 아래 사용자 이름(User Name)과 암호(Password) 입력 > **Sign In** 클릭
 
 ![](images/animated_gif/oci_console_login.gif)
 
