@@ -53,7 +53,8 @@ Terraform과 Resource Manager를 활용하여 간단한 예제 (OCI에 Object St
 Resource Manager에서 사용할 Terraform Configuration을 포함하는 Zip 패키지 파일 [oci-object-storage.zip](https://github.com/MangDan/oracle-resource-manager-handson/releases/download/1.0/oci-object-storage.zip)을 다운로드 받습니다.
 
 ### STEP 2: Resource Manager Zip 패키지 이해 
-다운로드 받은 Zip 압축 파일을 압축 해제합니다. 구조는 다음과 같습니다. 
+내용을 확인하기 위해서 다운로드 받은 Zip 압축 파일을 압축 해제합니다. 구조는 다음과 같습니다. 
+> 실제 Resource Manager에서 사용할 경우는 압축된 Zip파일을 사용합니다.
 ```
 .
 ├── oci-object-storage.zip
