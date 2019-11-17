@@ -22,12 +22,8 @@ Oracle Modern Cloud Day 2019의 Developer Hands-on Track
 본 실습을 위해서 각 개인별로 한 개의 Oracle Cloud Trial과 실습을 진행하기 위한 클라이언트 환경을 제공합니다.  
 클라이언트 환경 접속에 대한 정보는 별도로 제공합니다.  
 
-## 간단한 한장짜리 시나리오 화면 추가
-
-## Terraform과 Oracle Resource Manager (장표 설명: 10분 ~ 15분)
-Presentation은 Gitpitch를 사용할 예정임.
-[![](images/gitpitch-orm-intro.png)](https://gitpitch.com/mangdan/oracle-resource-manager-handson#/)
-
+## 시나리오
+![](images/scenario.png)
 
 ## Hands-On (30분)
 ### ***[PART 1]*** Hello!! Resource Manager and Terraform
