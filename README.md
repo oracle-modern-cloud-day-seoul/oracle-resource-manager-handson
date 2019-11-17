@@ -23,7 +23,7 @@ Oracle Modern Cloud Day 2019의 Developer Hands-on Track
 클라이언트 환경 접속에 대한 정보는 별도로 제공합니다.  
 
 ## 시나리오
-![](images/scenario.png)
+![](images/scenario1.png)
 
 ## Hands-On (30분)
 ### ***[PART 1]*** Hello!! Resource Manager and Terraform
