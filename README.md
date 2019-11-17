@@ -18,7 +18,7 @@ Oracle Modern Cloud Day 2019의 Developer Hands-on Track
 * OCI (Oracle Cloud Infrastructure) 계정
 * SSH Terminal (windows Putty, macOS Terminal 등)
 
-## 실습을 위한 클라이언트 환경과 oci_info
+## 실습을 위한 클라이언트 환경
 본 실습을 위해서 각 개인별로 한 개의 Oracle Cloud Trial과 실습을 진행하기 위한 클라이언트 환경을 제공합니다.  
 클라이언트 환경 접속에 대한 정보는 별도로 제공합니다.  
 
